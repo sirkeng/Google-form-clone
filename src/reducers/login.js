@@ -12,10 +12,8 @@ export const stateLogin = (isRequest = false, isAuth = false, alertmsg = '', use
 const loginReducer = (state = stateLogin(), action) => {
     switch (action.type) {
         case AUTHENTICATION:
-            console.log('AUTHENTICATION')
             return action.payload
         default:
-            console.log('default')
             return state
     }
 }

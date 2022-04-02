@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from "react-router-dom"
 import { Formik } from 'formik'
 import { Form, Input, SubmitButton } from 'formik-antd'
 import * as Yup from 'yup'
@@ -14,13 +15,18 @@ import { useDocumentTitle } from '../utils'
 const ValidateSchemaForm = Yup.object().shape({
     username: Yup.string().required('Required'),
     password: Yup.string().required('Required')
-  })
+})
 
 const Login = ({ title }) => {
     useDocumentTitle(title)
 
+    let navigate = useNavigate();
     const dispatch = useDispatch()
     const { isRequest, isAuth, alertmsg } = useSelector((state) => state.login)
+
+    useEffect(() => {
+        if(isAuth) return navigate.push('/google-form')
+    }, [isAuth, navigate])
 
     const handleOnSubmit = (values) => {
         dispatch(loginAction(values))
