@@ -1,15 +1,14 @@
-import React /*{ useState }*/ from 'react'
-// import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Formik } from 'formik'
 import { Form, Input, SubmitButton } from 'formik-antd'
 import * as Yup from 'yup'
-// import { message } from 'antd'
-// import { isEmpty } from 'lodash'
+import { Alert } from 'antd'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons'
 
-
+import { loginAction } from '../actions'
 import { useDocumentTitle } from '../utils'
 
 const ValidateSchemaForm = Yup.object().shape({
@@ -20,9 +19,11 @@ const ValidateSchemaForm = Yup.object().shape({
 const Login = ({ title }) => {
     useDocumentTitle(title)
 
+    const dispatch = useDispatch()
+    const { isRequest, isAuth, alertmsg } = useSelector((state) => state.login)
 
     const handleOnSubmit = (values) => {
-        console.log('handleOnSubmit--->', values)
+        dispatch(loginAction(values))
     }
 
     return (
@@ -37,7 +38,7 @@ const Login = ({ title }) => {
                         validationSchema={ValidateSchemaForm}
                         onSubmit={handleOnSubmit}
                     >
-                        <Form className="login">
+                        <Form className="login" autoComplete="off">
                             <Form.Item className="login__field" name='username'>
                                 <FontAwesomeIcon className="login__icon" icon={faUser} />
                                 <Input className="login__input" name='username' placeholder="Username" />
@@ -45,11 +46,12 @@ const Login = ({ title }) => {
                             <Form.Item className="login__field" name='password'>
                                 <FontAwesomeIcon className="login__icon" icon={faLock} />
                                 <Input className="login__input" name='password' placeholder="Password" />
-                                </Form.Item>
+                            </Form.Item>
+                            {(isRequest && isAuth===false) && <Alert message={alertmsg} type="error" />}
                             <SubmitButton className="button login__submit" loading={false}>
                                 <span className="button__text">Log In Now</span>
                                 <FontAwesomeIcon className="button__icon" icon={faChevronCircleRight} />
-                            </SubmitButton>		
+                            </SubmitButton>
                         </Form>
                     </Formik>
                     <div className="social-login">

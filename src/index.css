@@ -111,6 +111,9 @@ body {
 	width: 75%;
 	transition: .2s;
 }
+.login__input input {
+  border: 0;
+}
 
 .login__input:active,
 .login__input:focus,
@@ -181,4 +184,7 @@ body {
   color: red;
   margin-top: 5px;
   font-size: 14px;
+}
+.ant-alert-message {
+  color: red;
 }
