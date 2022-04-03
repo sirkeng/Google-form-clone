@@ -1,24 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
 import { BrowserRouter as Router } from 'react-router-dom'
+import { PersistGate } from 'redux-persist/integration/react'
 
 import './index.css'
 // import App from './App'
 import reportWebVitals from './reportWebVitals'
 
 import App from './App'
-import reducers from './reducers'
+import configureStore from './configureStore'
 
-
-const createStoreWithMiddleware = applyMiddleware()(createStore)
+const { store, persistor } = configureStore()
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
      <Router>
         <App />
      </Router>
+     </PersistGate>
   </Provider>
   ,
   document.getElementById('root')
