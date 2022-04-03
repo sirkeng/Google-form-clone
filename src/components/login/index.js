@@ -22,12 +22,12 @@ const ValidateSchemaForm = Yup.object().shape({
 const Login = ({ title }) => {
     useDocumentTitle(title)
 
-    let navigate = useNavigate();
+    let navigate = useNavigate()
     const dispatch = useDispatch()
     const { isRequest, isAuth, alertmsg } = useSelector((state) => state.login)
 
     useEffect(() => {
-        if(isAuth) return navigate('/google-form')
+        if(isAuth) return navigate('/catlist')
     }, [isAuth, navigate])
 
     const handleOnSubmit = (values) => {

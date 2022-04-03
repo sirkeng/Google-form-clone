@@ -14,18 +14,17 @@ const { Header, Content, Footer } = Layout
 
   
 const App = () => {
+  
   const dispatch = useDispatch()
 
   const { isAuth } = useSelector((state) => state.login)
   const routing = useRoutes(routes(isAuth))
-
-  console.log('App--->', isAuth, routing)
-
+  // console.log('App--->', isAuth, routing)
+  // useDocumentTitle('tst')
   if(isNull(routing)) return <h1>Not Found URL</h1>
-  if(isAuth===false) return <>{routing}</>
+  if(isAuth===false)  return <>{routing}</>
 
   const handleOnClickLogout = () => {
-    console.log('handleOnClickLogout--->')
     dispatch(logoutAction())
   }
   

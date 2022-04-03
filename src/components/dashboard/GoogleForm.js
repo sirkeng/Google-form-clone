@@ -1,13 +1,17 @@
 import React from "react"
 import { Steps, Button, message } from 'antd'
 
-const { Step } = Steps;
+import { useDocumentTitle } from '../../utils'
 
-const GoogleForm = () => {
+const { Step } = Steps
+
+const GoogleForm = ({ title }) => {
+  useDocumentTitle(title)
+  
     const steps = [
         {
           title: 'First',
-          content: 'First-content',
+          content: <>test</>,
         },
         {
           title: 'Second',
