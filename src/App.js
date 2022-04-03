@@ -3,7 +3,7 @@ import { Layout, Menu } from 'antd'
 
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { useRoutes } from 'react-router-dom'
+import { useRoutes, Link } from 'react-router-dom'
 import { isNull } from 'lodash'
 
 import routes from './routes'
@@ -33,18 +33,13 @@ const App = () => {
     <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
       <div className="logo" />
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-        <Menu.Item key="1" onClick={handleOnClickLogout}>Logout</Menu.Item>
-        {/* <Menu.Item key="2">nav 2</Menu.Item>
-        <Menu.Item key="3">nav 3</Menu.Item> */}
+        <Menu.Item key="3"><Link to={'/catlist'}>Cats</Link></Menu.Item>
+        <Menu.Item key="2"><Link to={'/add-cat'}>Add Cat</Link></Menu.Item>
+        <Menu.Item key="1" style={{ float: 'right' }} onClick={handleOnClickLogout}>Logout</Menu.Item>
       </Menu>
     </Header>
-    <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
-      {/* <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>List</Breadcrumb.Item>
-        <Breadcrumb.Item>App</Breadcrumb.Item>
-      </Breadcrumb> */}
-      <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
+    <Content className="site-layout" style={{ marginTop: 64 }}>
+      <div className="site-layout-background" style={{ padding: 24, minHeight: '100vh' }}>
         {routing}
       </div>
     </Content>
