@@ -4,8 +4,9 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import './index.css'
-// import App from './App'
+
+import 'antd/dist/antd.css'
+
 import reportWebVitals from './reportWebVitals'
 
 import App from './App'

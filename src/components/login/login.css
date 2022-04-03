@@ -179,12 +179,3 @@ body {
 .social-login__icon:hover {
 	transform: scale(1.5);	
 }
-
-.ant-form-item-explain-error {
-  color: red;
-  margin-top: 5px;
-  font-size: 14px;
-}
-.ant-alert-message {
-  color: red;
-}

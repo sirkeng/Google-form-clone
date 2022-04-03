@@ -9,8 +9,10 @@ import { Alert } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons'
 
-import { loginAction } from '../actions'
-import { useDocumentTitle } from '../utils'
+import { loginAction } from '../../actions'
+import { useDocumentTitle } from '../../utils'
+
+import './login.css'
 
 const ValidateSchemaForm = Yup.object().shape({
     username: Yup.string().required('Required'),
@@ -25,7 +27,7 @@ const Login = ({ title }) => {
     const { isRequest, isAuth, alertmsg } = useSelector((state) => state.login)
 
     useEffect(() => {
-        if(isAuth) return navigate.push('/google-form')
+        if(isAuth) return navigate('/google-form')
     }, [isAuth, navigate])
 
     const handleOnSubmit = (values) => {

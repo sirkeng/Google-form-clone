@@ -1,4 +1,4 @@
-import Login from './components/Login'
+import Login from './components/login'
 import GoogleForm from './components/dashborad/GoogleForm'
 
 const routes = (isAuth) => [
